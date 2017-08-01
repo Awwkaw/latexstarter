@@ -4,7 +4,7 @@
 # 
 # Created by Thorbjoern E. K. Christensen
 
-usage() {printf "%s" "\
+usage() { printf "%s" "\
 Usage: latexstarter [OPTION] -n 'project name'
 Example: latexstarter -n 'Thesis'
          latexstarter -c 33 -p ~/Documents/preamble.tex -t 'Creating latex projects' -k -n 'thesis'
