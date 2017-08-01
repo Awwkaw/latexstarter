@@ -6,8 +6,8 @@
 
 usage() {printf "%s" "\
 Usage: latexstarter [OPTION] -n 'project name'
-Example: latexstarter -n 'Thesis'
-         latexstarter -c 33 -p ~/Documents/preamble.tex -t 'Creating latex projects' -k -n 'thesis'
+Example: wal -i 'Thesis'
+         wal -c 33 -p ~/Documents/preamble.tex -t 'Creating latex projects' -k -i 'thesis'
 Flags:
         -a      Set the name of the document author (default none set).
         -c      Set the number of chapters (must be interger -- default one empty chapter created).
