@@ -103,7 +103,7 @@ setup_files() {
 
 
 get_args() {
-    while getopts ":n:c:t:a:pkf" opt; do
+    while getopts ":n:c:t:a:pkfh" opt; do
         case "$opt" in
             "n")
                 name="$OPTARG" ;;
