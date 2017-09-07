@@ -1,0 +1,124 @@
+\documentclass[oneside,english,onecolumn,openbib,a4paper]{memoir}
+%\usepackage[onEveryPage]{coffee}
+%husk at skriv hidelinks til sidst
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+
+
+
+\usepackage[dvipsnames,rgb]{xcolor}
+\usepackage{soul}
+\sodef\an{}{0.2em}{.9em plus.6em}{1em plus.1em minus.1em}
+\newcommand\stext[1]{\an{\scshape#1}}
+
+
+
+\usepackage{graphicx}%grafik og farver
+\graphicspath{{./figure/}}
+\usepackage{siunitx} %si enheder
+\sisetup{exponent-product=\cdot, output-product =\cdot,per-mode=fraction,range-phrase=--}%Ændre måden siunitx viser enheder på
+\DeclareSIUnit\at{attempts}
+\usepackage{datatool}%tabeller
+\usepackage{units}   %skrå brøker
+
+
+%matematik pakker
+\usepackage{braket} 
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{dsfont}%matematisk z
+\usepackage{array}%noget med at vektore blir pænere
+\usepackage{cancel} %bruges til at overstrege matematik
+
+%\usepackage{listing}
+
+
+\usepackage{tikz} %tegne
+\usepackage{tikzscale}%hent grafik fra .tikz dokumenter
+\usetikzlibrary{calc,patterns,shapes,arrows,positioning}
+
+
+%flyderpakker
+\usepackage{float}      %præcis placering
+\usepackage{stfloats}   %mere præcis placering
+\newsubfloat{figure}
+
+%pakker til at gøre LaTeX pænt
+\usepackage[final]{microtype}
+\clubpenalty10000
+\widowpenalty10000
+\usepackage{lipsum}
+
+\allowdisplaybreaks[4] %sideskift i allign
+
+\usepackage{booktabs}
+\usepackage{titlesec}
+
+\chapterstyle{dash}
+\AtBeginEnvironment{appendices}{\chapterstyle{default}}
+
+\setlength{\beforechapskip}{0pt}% was 50pt
+\titlespacing*{\subsection}{0pt}{2pt}{0pt}
+\titlespacing*{\section}{0pt}{5pt}{0pt}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+
+
+%nye kommandoer
+\newcommand{\abitem}[2]{ \item #1---#2}
+\newcommand{\res}[1]{\underline{\underline{#1}}}
+\newcommand{\opgave}[2][]{\chapter*{Question $\left( #2 \right)$ #1}}
+\newcommand{\delopgave}[2][]{\section*{Question $\left( #2 \right)$ #1}}
+\newcommand{\underdelopgave}[2][]{\subsection*{Underdelopgave $\left( #2 \right)$ #1}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %nummererer ligning i align*
+\newcommand{\colordot}[1]{
+\raisebox{-0.5ex}{\tikz{
+\filldraw[fill=#1,draw=#1] (0,0) circle (4.5pt);
+}}}
+
+
+
+%Skitse pakker
+
+\usepackage[footnote,margin]{fixme}
+\usepackage{marginnote} % for at undgå fejl 
+\fxsetup{theme=color}
+%\usepackage[draft]{showkeys}
+%\usepackage{showframe}
+
+%referencepakker
+\usepackage{bookmark}
+
+\usepackage[noabbrev]{cleveref}   %smarte referrencer
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!80!black},
+    citecolor={blue},
+    urlcolor={green!70!black}
+}
+
+\renewcommand\mempostaddapppagetotochook{\cftinserthook{toc}{BREAK}}
+\cftinsertcode{BREAK}{\changetocdepth{-10}}
+\let\normalchangetocdepth\changetocdepth
+% needed for later
+
+\makeatletter
+\newcommand\appendixtableofcontents{
+\begingroup
+\let\changetocdepth\@gobble
+\normalchangetocdepth{-10}
+\cftinsertcode{BREAK}{\normalchangetocdepth{3}}
+\renewcommand\contentsname{Appendices overview}
+\tableofcontents*
+\endgroup
+}
+\makeatother
+
+
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
+
