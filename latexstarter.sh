@@ -13,7 +13,7 @@ Flags:
         -c      Set the number of chapters (must be interger -- default one empty chapter created).
         -f      turn figure folder off, default figure folder will be created.
         -h      display this message and stop the script
-        -k      Compile on creation (a pdf showing titlem date, author and chapternumbers wil be created, default off).
+        -k      Compile on creation (a pdf showing title, date, author and chapternumbers wil be created, default off).
         -n      Name of project, must be given, will be the name of the directory, main texfile and bib file.
         -p      Path to preamble, Default is the file Preamble.tex in the same folder as this bash script.
         -t      Set the tile of the project (default is the name of the project).
