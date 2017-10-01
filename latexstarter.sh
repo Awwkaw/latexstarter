@@ -33,6 +33,7 @@ end_setup() {
 
 main_setup() {
     mainfile="$path/$name.tex" 
+    echo '\documentclass[oneside,english,onecolumn,openbib,a4paper]{memoir}' >> "$mainfile"
     echo "\\input{texfiles/Preamble.tex}" >> "$mainfile"
     if [ ! -z "$title" ];
     then
