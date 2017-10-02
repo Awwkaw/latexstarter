@@ -15,9 +15,10 @@ Flags:
         -h      display this message and stop the script
         -k      Compile on creation (a pdf showing title, date, author and chapternumbers wil be created, default off).
         -n      Name of project, must be given, will be the name of the directory, main texfile and bib file.
+        -m      Minimal preamble, will overwrite the standard preamble, but not a specific preamble
         -p      Path to preamble, Default is the file Preamble.tex in the same folder as this bash script.
+        -s      Create a texfile in figures with class standalone, use for creating figueres, only created if f is not given
         -t      Set the tile of the project (default is the name of the project).
-        -s      Create a texfile in figures with class standalone, use for creating figueres
 
   "
 
@@ -70,6 +71,14 @@ main_setup() {
 
 }
 
+minimal_preambple() {
+    preamble="$(pwd)/$name/texfiler/Preamble.tex"
+    touch "$preamble"
+    echo "\\usepackage[utf8]{inputenc}
+    \\usepackage[T1]{fontenc}
+    \\usepackage{mathtools,amssymb,bm}" >> "$preamble"
+}
+
 standalone_fig_setup() {
     standfile="$(pwd)/$name/figures/standfig.tex"
     touch "$standfile"
@@ -88,6 +97,10 @@ setup_files() {
     if [ -z "$figure" ]; 
     then
         mkdir "$path/figures"
+        if [ ! -z "$standalone" ];
+        then
+            standalone_fig_setup
+        fi
     fi
     if [ ! -z "$chapternum" ];
     then
@@ -102,9 +115,10 @@ setup_files() {
     if [ ! -z "$preamblepath" ];
     then
         cp "$preamblepath" "$path/texfiles/Preamble.tex"
-    fi
-    if [ -z "$preamblepath" ];
+    elif [ ! -z "$minipreamble" ];
     then
+        minimal_preample
+    else
         preamblepath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
         cp "$preamblepath/Preamble.tex" "$path/texfiles/Preamble.tex"
     fi
@@ -134,6 +148,8 @@ get_args() {
                 figure="off" ;; 
             "s")
                 standalone="on" ;;
+            "m")
+                minipreamble="on" ;;
             "h") 
                 usage; exit 1 ;;
             "\?")
