@@ -14,8 +14,10 @@ for futher cotimisation, flags can be used:
         -f      turn figure folder off, default figure folder will be created.
         -h      display this message and stop the script
         -k      Compile on creation (a pdf showing titlem date, author and chapternumbers wil be created, default off).
+        -m      Minimal preamble, will overwrite the standard preamble, but not a specific preamble
         -n      Name of project, must be given, will be the name of the directory, main texfile and bib file.
         -p      Path to preamble, Default is the file .Preamble.tex in the same folder as this bash script.
+        -s      Create a texfile in figures with class standalone, use for creating figueres, only created if f is not given       
         -t      Set the tile of the project (default is the name of the project).
 
 
