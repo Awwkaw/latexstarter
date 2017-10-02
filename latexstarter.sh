@@ -71,8 +71,8 @@ main_setup() {
 
 }
 
-minimal_preambple() {
-    preamble="$(pwd)/$name/texfiler/Preamble.tex"
+minimal_preamble() {
+    preamble="$(pwd)/$name/texfiles/Preamble.tex"
     touch "$preamble"
     echo "\\usepackage[utf8]{inputenc}
     \\usepackage[T1]{fontenc}
@@ -97,7 +97,7 @@ setup_files() {
     if [ -z "$figure" ]; 
     then
         mkdir "$path/figures"
-        if [ ! -z "$standalone" ];
+        if [ "$standalone" ];
         then
             standalone_fig_setup
         fi
@@ -112,25 +112,28 @@ setup_files() {
             echo "\\chapter{}" >> "$path/texfiles/$i.tex"
         done
     fi
-    if [ ! -z "$preamblepath" ];
+    if [ "$preamblepath" ];
     then
         cp "$preamblepath" "$path/texfiles/Preamble.tex"
-    elif [ ! -z "$minipreamble" ];
+        touch "$path/$name.bib"
+        echo "\\bibliography{$name}" >> "$path/texfiles/Preamble.tex"
+    elif [ "$minipreamble" ];
     then
-        minimal_preample
+        minimal_preamble
     else
         preamblepath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
         cp "$preamblepath/Preamble.tex" "$path/texfiles/Preamble.tex"
+        echo "$([ -z "$minipreamble" ])"
+        touch "$path/$name.bib"
+        echo "\\bibliography{$name}" >> "$path/texfiles/Preamble.tex"
     fi
     touch "$path/$name.tex"
     touch "$path/$name.tex.latexmain"
-    touch "$path/$name.bib"
-    echo "\\bibliography{$name}" >> "$path/texfiles/Preamble.tex"
 }
 
 
 get_args() {
-    while getopts ":n:c:t:a:pkfh" opt; do
+    while getopts ":n:c:t:a:pkfsmh" opt; do
         case "$opt" in
             "n")
                 name="$OPTARG" ;;
