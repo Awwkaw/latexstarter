@@ -33,7 +33,7 @@ end_setup() {
 
 main_setup() {
     mainfile="$path/$name.tex" 
-    echo '\documentclass[oneside,english,onecolumn,openbib,a4paper]{memoir}' >> "$mainfile"
+    echo "\\documentclass[oneside,english,onecolumn,openbib,a4paper]{memoir}" >> "$mainfile"
     echo "\\input{texfiles/Preamble.tex}" >> "$mainfile"
     if [ ! -z "$title" ];
     then
@@ -68,6 +68,17 @@ main_setup() {
 \\end{document}" >> "$mainfile"
 
 }
+
+standalone_fig_setup() {
+    standfile="$(pwd)/$name/figures/standfig.tex"
+    touch "$standfile"
+    echo "\\documentclass{standalone}" >> "$standfile"
+    echo "\\input{../texfiles/Preamble.tex}" >> "$standfile"
+    echo "\\begin{document}
+
+\\end{document} " >> "$standfile"
+}
+
 
 setup_files() {
     path="$(pwd)/$name"
@@ -120,6 +131,8 @@ get_args() {
                 kompile="on" ;;
             "f")
                 figure="off" ;; 
+            "s")
+                standalone="on" ;;
             "h") 
                 usage; exit 1 ;;
             "\?")
