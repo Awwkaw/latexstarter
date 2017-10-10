@@ -75,16 +75,18 @@ minimal_preamble() {
     preamble="$(pwd)/$name/texfiles/Preamble.tex"
     touch "$preamble"
     echo "\\usepackage[utf8]{inputenc}
-    \\usepackage[T1]{fontenc}
-    \\usepackage{mathtools,amssymb,bm}" >> "$preamble"
+\\usepackage[T1]{fontenc}
+\\usepackage{mathtools,amssymb,bm}" >> "$preamble"
 }
 
 standalone_fig_setup() {
     standfile="$(pwd)/$name/figures/standfig.tex"
     touch "$standfile"
-    echo "\\documentclass{standalone}" >> "$standfile"
-    echo "\\input{../texfiles/Preamble.tex}" >> "$standfile"
-    echo "\\begin{document}
+    echo "\\documentclass{standalone}
+\\input{../texfiles/Preamble.tex}
+\\usepackage{tikz}
+\\usepackage{pgfplots}
+\\begin{document}
 
 \\end{document} " >> "$standfile"
 }
