@@ -82,10 +82,15 @@ minimal_preamble() {
 standalone_fig_setup() {
     standfile="$(pwd)/$name/figures/standfig.tex"
     touch "$standfile"
-    echo "\\documentclass{standalone}
-\\input{../texfiles/Preamble.tex}
+    echo "\\documentclass[border=0.5]{standalone}
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\usepackage{mathtools,amsmath}
 \\usepackage{tikz}
 \\usepackage{pgfplots}
+\\usepgfplotslibrary{external}
+\\tikzexternalize
+\\tikzset{external/force remake}
 \\begin{document}
 \\begin{tikzpicture}
 
@@ -93,10 +98,16 @@ standalone_fig_setup() {
 \\end{document} " >> "$standfile"
         standplot="$(pwd)/$name/figures/standplot.tex"
     touch "$standplot"
-    echo "\\documentclass{standalone}
-\\input{../texfiles/Preamble.tex}
+    echo "\\documentclass[border=0.5]{standalone}
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\usepackage{mathtools,amsmath}
 \\usepackage{tikz}
 \\usepackage{pgfplots}
+\\usepgfplotslibrary{external}
+\\tikzexternalize
+\\tikzset{external/force remake}
+
 \\begin{document}
 \\begin{tikzpicture}
 \\begin{axis}
