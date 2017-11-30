@@ -17,7 +17,7 @@ Flags:
         -n      Name of project, must be given, will be the name of the directory, main texfile and bib file.
         -m      Minimal preamble, will overwrite the standard preamble, but not a specific preamble
         -p      Path to preamble, Default is the file Preamble.tex in the same folder as this bash script.
-        -s      Create a texfile in figures with class standalone, use for creating figueres, only created if f is not given
+        -s      Create a texfile in figures with class standalone, use for creating figueres, only created if f is not given, also creates a standard file for plotting data.
         -t      Set the tile of the project (default is the name of the project).
 
   "
