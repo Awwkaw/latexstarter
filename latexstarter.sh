@@ -87,8 +87,23 @@ standalone_fig_setup() {
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\begin{document}
+\\begin{tikzpicture}
 
+\\end{tikzpicture}
 \\end{document} " >> "$standfile"
+        standplot="$(pwd)/$name/figures/standplot.tex"
+    touch "$standplot"
+    echo "\\documentclass{standalone}
+\\input{../texfiles/Preamble.tex}
+\\usepackage{tikz}
+\\usepackage{pgfplots}
+\\begin{document}
+\\begin{tikzpicture}
+\\begin{axis}
+
+\\end{axis}
+\\end{tikzpicture}
+\\end{document} " >> "$standplot"
 }
 
 
