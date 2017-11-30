@@ -1,11 +1,11 @@
-# Latexstarter
-*A simple bash script trying to simplyfi the setup of fragmented LaTeX documents*
+# \LaTeX starter
+*A simple bash script trying to simplify the setup of fragmented LaTeX documents*
 
-Simply add the script to your .bashrc file, add your preamble to the same folder as latexstarter (the preamble must be named .Preamble.tex) and run the command:
+Simply add the path to the script to your .bashrc file, add your preamble to the same folder as latexstarter (the preamble must be named Preamble.tex) and run the command:
 
-latexstarter -n "name on project"
+`latexstarter -n "name on project"`
 
-to set the project up.
+to create the project structure.
 
 for futher cotimisation, flags can be used:
 
