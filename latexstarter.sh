@@ -11,6 +11,7 @@ Example: latexstarter -n 'Thesis'
 Flags:
         -a      Set the name of the document author (default none set).
         -c      Set the number of chapters (must be interger -- default one empty chapter created).
+        -d      Uses \\chapter*{} instead of \\chapter{}.
         -f      turn figure folder off, default figure folder will be created.
         -h      display this message and stop the script
         -k      Compile on creation (a pdf showing title, date, author and chapternumbers wil be created, default off).
@@ -61,10 +62,15 @@ main_setup() {
         while [ $i -lt "$chapternum" ];
         do
             i=$[$i+1]
-            echo "\\include{texfiles/$i}" >> "$mainfile"
+                echo "\\input{texfiles/$i}" >> "$mainfile"
         done
     else
-        echo "\\chapter{}" >> "$mainfile"
+        if [ "$chapterstar" ] ;
+        then 
+            echo "\\chapter\*{}" >> "$mainfile"
+        else 
+            echo "\\chapter{}" >> "$mainfile"
+        fi
     fi
     echo "
 \\end{document}" >> "$mainfile"
@@ -133,12 +139,22 @@ setup_files() {
     if [ ! -z "$chapternum" ];
     then
         i="0"
-        while [ $i -lt "$chapternum" ];
-        do
-            i=$[$i+1]
-            touch "$path/texfiles/$i.tex" 
-            echo "\\chapter{}" >> "$path/texfiles/$i.tex"
-        done
+        if [ "$chapterstar" ];
+        then 
+                while [ $i -lt "$chapternum" ];
+                do
+                    i=$[$i+1]
+                    touch "$path/texfiles/$i.tex" 
+                    echo "\\chapter\*{}" >> "$path/texfiles/$i.tex"
+                done
+        else
+                while [ $i -lt "$chapternum" ];
+                do
+                    i=$[$i+1]
+                    touch "$path/texfiles/$i.tex" 
+                    echo "\\chapter{}" >> "$path/texfiles/$i.tex"
+                done
+        fi
     fi
     if [ "$preamblepath" ];
     then
@@ -167,6 +183,8 @@ get_args() {
                 name="$OPTARG" ;;
             "c")
                 chapternum="$OPTARG" ;;
+            "d")
+                chapterstar="on" ;;
             "p")
                 preamblepath="$OPTARG" ;;
             "a") 
