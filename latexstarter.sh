@@ -92,6 +92,7 @@ standalone_fig_setup() {
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage{mathtools,amsmath}
+\\input{../texfiles/Preamble.tex}
 \\usepackage{tikz}
 \\usepackage{pgfplots}
 \\usepgfplotslibrary{external}
@@ -166,7 +167,7 @@ setup_files() {
         minimal_preamble
     else
         preamblepath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-        cp "$preamblepath/Preamble.tex" "$path/texfiles/Preamble.tex"
+        cp "$preamblepath/Preambles/project_Preamble.tex" "$path/texfiles/Preamble.tex"
         echo "$([ -z "$minipreamble" ])"
         touch "$path/$name.bib"
         echo "\\bibliography{$name}" >> "$path/texfiles/Preamble.tex"
@@ -177,6 +178,7 @@ setup_files() {
 
 
 get_args() {
+    re='^[0-9]+$'
     while getopts ":n:c:t:a:pkfsmh" opt; do
         case "$opt" in
             "n")
@@ -186,6 +188,9 @@ get_args() {
             "d")
                 chapterstar="on" ;;
             "p")
+	        if ! [[ "$OPTARG" =~ $re ]] ; then
+			echo "cool stuff" >&2;
+		fi
                 preamblepath="$OPTARG" ;;
             "a") 
                 author="$OPTARG";;
