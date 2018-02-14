@@ -21,4 +21,18 @@ for futher cotimisation, flags can be used:
         -t      Set the tile of the project (default is the name of the project).
 
 
+### Future goal
+
+One of the goals for the future of ´LaTeXstarter´ is to include multiple preset ´preambles´ here is a non-extensive list of wanted preambles:
+
+	- minimal or preamble zero:
+	-- The minimal list is already implemented, however it currently does not work with the figure folder, which it should be made to do, All other preambles should be made with this one as a base!
+	- master/bachelor Preamble
+	-- The msc/bsc preamble should include lots of packages that might be nice for longer project work. While featuring a chapter style that is nice for a bachelor or masters degree.
+	- Bigger project preamble (Phd, scientific textbook)
+	-- Same packages as the master/bachelor preamble, but a different chapter setup
+	- Book preamble
+	-- something more suitable for books (Not loading scientific packages, but still project packages such as the ´fixme´. No citing capabilites should be loaded either, but still packages for pretier text (mycrotype) should be loaded. 
+	- Exercise sheet
+	-- Chapters should work as in an article (no new page) and chapters, section, sub$^n$sections should have names such as exercise (1 2 3), problem (a, b, c) or just (i, ii, iii, iv, ...)
 
